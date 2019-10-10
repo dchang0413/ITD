@@ -1,0 +1,7 @@
+@import url("pipeline.css");
+
+#mtsu-quicklinks,#mtsu-branding-bar,#side-menu {display:none;}
+@page {size: landscape}
+@media (min-width: 1px) {
+    #page-wrapper {padding-left:25px;}
+}
