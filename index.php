@@ -7,11 +7,18 @@ if(!array_key_exists('id',$_POST)){
 }
 
 include('confirm.php');
+include('payment.php');
 include("class.DB.php");
 
 $res = DB::pdo()->query("SELECT * FROM student WHERE id=".$sess_id." LIMIT 1");
 
+//Get the confirm button template
 $params['CONFIRM'] = getConfirmBtn($sess_id);
+
+//Get the payment table template
+$params['PAYMENT'] = getPaymentTable($sess_id);
+
+// Load user according to session ID
 if ($res->rowCount()) {
 	$r = $res->fetch();
 	$params['STU_NAME'] = $r['fname'].' '.$r['mname'].' '.$r['lname'];
@@ -20,6 +27,7 @@ if ($res->rowCount()) {
   echo '<p>Invalid sess_id</p>';
 }
 
+// Drop down ID list for switching through different accounts
 $res = DB::pdo()->query("SELECT * FROM student WHERE id");
 $rowCnt = $res->rowCount();
 if ($rowCnt){
@@ -32,6 +40,7 @@ if ($rowCnt){
 	$dropdown.='</select>';
 	$params['IDDROP'] = $dropdown;
 }
+// End of Drop down ID list generation
 
 $content = file_get_contents('home.html');
 

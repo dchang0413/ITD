@@ -1,206 +1,344 @@
+
+
 <html>
-<head>
-<title>PipelineMT</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="initial-scale=1.0, width=device-width">
-<meta name="theme-color" content="#005ea4">
-<link rel="stylesheet" href="//mtsu.edu/_resources/css/all-fontawesome.css">
-<link rel="stylesheet" href="//mtsu.edu/_resources/css/fontawesome-v4-shims.css">
+   <head>
+      <title>PipelineMT</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="initial-scale=1.0, width=device-width">
+      <meta name="theme-color" content="#005ea4">
+      <link rel="stylesheet" href="//mtsu.edu/_resources/css/all-fontawesome.css">
+      <link rel="stylesheet" href="//mtsu.edu/_resources/css/fontawesome-v4-shims.css">
+      <link href="/css/pipeline.css" rel="stylesheet">
+      <link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
+      <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/js/jquery-2.1.1.js"></script>
+      <script src="/script/main.js"></script>
+      <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-5283804-17"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments)};
+         gtag('js', new Date());
+         gtag('config', 'UA-5283804-17');
+      </script>
+      <script type="text/javascript">
+         var root = '/';
+         $( document ).ready(function() {
+         	$('#logout').on('click',function(){
+         			//Kill SSB session
+         			var iframe = document.createElement("iframe");
+         			iframe.setAttribute("id", "killsession");
+         			iframe.setAttribute("height", "0");
+         			iframe.setAttribute("width", "0");
+         			iframe.setAttribute("frameborder", "0");
+         			iframe.setAttribute("src", "https://ssb.mtsu.edu/pls/PROD/twbkwbis.P_Logout");
+         			document.body.appendChild(iframe);
+         			//Kill Pipeline session
+         			window.location = root+'logout';
+         	});
+         });
 
-<link href="/css/pipeline.css" rel="stylesheet">
-<link href="/css/print.css" rel="stylesheet" type="text/css" media="print">
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/js/jquery-2.1.1.js"></script>
-<script src="/script/main.js"></script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-5283804-17"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments)};
-gtag('js', new Date());
-gtag('config', 'UA-5283804-17');
-</script>
-<script type="text/javascript">
-var root = '/';
-$( document ).ready(function() {
-	$('#logout').on('click',function(){
-			//Kill SSB session
-			var iframe = document.createElement("iframe");
-			iframe.setAttribute("id", "killsession");
-			iframe.setAttribute("height", "0");
-			iframe.setAttribute("width", "0");
-			iframe.setAttribute("frameborder", "0");
-			iframe.setAttribute("src", "https://ssb.mtsu.edu/pls/PROD/twbkwbis.P_Logout");
-			document.body.appendChild(iframe);
-			//Kill Pipeline session
-			window.location = root+'logout';
-	});
-});
-
-	$.getJSON('https://mtsu.edu/pipeline/manage/request/outage/getOutages/0/1/2', function(data) {
-			if (data.length){
-					var outageDiv;
-					for(var i=0;i<data.length;i++) {
-							if (i<2) {
-									$('#pipeline-outage').append($('<div>').addClass('outage-info').html('<h3>'+data[i].title.toUpperCase()+'</h3><p>'+data[i].format+'</p><p>'+data[i].content+' (For more information, please visit our <a href="https://mtsu.edu/pipeline/downtime.php" target="_blank">Planned System Outages</a> page.)</p>').prepend($('<div>').addClass('hide-outage').addClass('fa').addClass('fa-times-circle')));
-							}
-					}
-			}
-	});
-</script>
-<script type="text/javascript" async="" src="//static.getclicky.com/js"></script></head>
-<body class="">
-<!--START HEADER-->
-	<a class="sr-only" href="#main-content">Skip to Main Content</a>
-	<div id="timeout-overlay" style="display: none;"><!--x--></div>
-	<div id="timeout-content" style="display: none;">
-			<h2>Your session will expire in <span id="timeout-remaining"></span></h2>
-			<h3><a id="extend-session">EXTEND SESSION</a> or <a href="/logout">LOGOUT</a>?</h3>
-	</div>
-	<div id="overlay"><!--x--></div>
-	<div id="mtsu-quicklinks">
-			<div id="alert-rave"><!--x--></div>
-		<div id="mtsu-logo" class=""><img src="/images/mt-logo-sm.png" alt="MTSU Logo"></div>
-		<div class="pull-right">
-			[IDDROP]
-			<div id="desktop-menu">
-				<ul class="quicklinks-nav">
-					<li><a href="http://www.mtsu.edu/one-stop" title="MT One Stop" target="_blank"><img alt="MT One Stop" src="/images/mt-one-stop.png"></a></li>
-					<li><a href="http://elearn.mtsu.edu" title="D2L" target="_blank" style="font-size:18px;font-weight:bold;">D2L</a></li>
-					<li><a href="http://mtsu.edu/email/" title="Email" target="_blank" style="font-size:16px;"><i class="fas fa-envelope"></i><span class="sr-only">Email</span></a></li>
-									<li class="account-info">[STU_NAME]<span id="mnum-show" class="hidden">(<a>SHOW M#</a>)</span><span class="mobile-hide mnum-display account-info-block">([ID])<a id="mnum-hide">HIDE</a></span></li>                    <li class="account-info mobile-hide"><a id="logout"><i class="fas fa-sign-out" aria-hidden="true"><!--x--></i> Log Out</a></li>
-				</ul>
-			</div>
-					<div class="account-info mobile-show">
-							<a href="/logout" class="logout-link"><i class="fas fa-sign-out" aria-hidden="true"><!--x--></i> Log Out</a>
-					</div>
-					<a id="mobile-menu" title="menu"><i class="fas fa-bars"><!--x--></i><span class="sr-only">Toggle Menu</span></a>
-					<div class="clear"><!--x--></div>
-		</div>
-		<div class="clear"><!--x--></div>
-	</div>
-
-	<div id="mtsu-branding-bar">
-		<div id="mtsu-branding-logo"><img alt="MTSU Logo" src="/images/mtsu-logo.png"></div>
-		PipelineMT    </div>
-<!--END HEADER-->
-<div id="content-container">
-<!--START SIDE BAR-->
-	<nav class="navbar-default" role="navigation" id="side-menu">
-		<ul class="mobile-nav-option">
-				 <li><a href="http://www.mtsu.edu/one-stop" target="_blank" title="MT One Stop"><span class="nav-label menu-name"><img alt="MTOneStop" src="/images/mt-one-stop-white.png"></span></a></li>
-				 <li><a href="http://elearn.mtsu.edu" target="_blank" title="D2L"><span class="nav-label menu-name">D2L</span></a></li>
-				 <li><a href="http://mtsu.edu/email/" target="_blank" title="Email"><i class="fas fa-envelope"></i><span class="nav-label menu-name"><!--x--></span><span class="sr-only">Email</span></a></li>
-			 </ul>
-		 <ul class="nav side-nav">
-								 <li class="active " id="" role="presentation">
-					 <a href="/home" role="menuitem">
-						 <i class="fas fa-home" aria-hidden="true"></i>
-						 <span class="nav-label menu-name">Home</span>
-					</a>
-				 </li>
-									 <li class="" id="" role="presentation">
-					 <a href="/registration" role="menuitem">
-						 <i class="fas fa-graduation-cap steel-icons" aria-hidden="true"></i>
-						 <span class="nav-label menu-name">Registration &amp; Student Records</span>
-					</a>
-				 </li>
-									 <li class="" id="" role="presentation">
-					 <a href="/academic-resources" role="menuitem">
-						 <i class="fas fa-pencil-alt teal-icons" aria-hidden="true"></i>
-						 <span class="nav-label menu-name">Academic Resources</span>
-					</a>
-				 </li>
-									 <li class="" id="" role="presentation">
-					 <a href="/financial-aid" role="menuitem">
-						 <i class="fas fa-money-bill-alt green-icons" aria-hidden="true"></i>
-						 <span class="nav-label menu-name">Financial Aid</span>
-					</a>
-				 </li>
-									 <li class="" id="" role="presentation">
-					 <a href="/billing-payment" role="menuitem">
-						 <i class="fas fa-dollar-sign green-icons" aria-hidden="true"></i>
-						 <span class="nav-label menu-name">Billing &amp; Payment</span>
-					</a>
-				 </li>
-									 <li class="" id="" role="presentation">
-					 <a href="/resources" role="menuitem">
-						 <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
-						 <span class="nav-label menu-name">Resources</span>
-					</a>
-				 </li>
-							 </ul>
-	</nav>
-<!--END SIDE BAR-->
-	<div id="page-wrapper">
-					<a name="main-content"></a>
-					<div id="pipeline-outage"></div>
-					<div class="mobile-show mobile-account-info">Daniel Chang (M01381755)</div>
-					<div class="portlet-icons mtsu-portlet portlet-container"><div class="mtsu-portlet-content"><p><a href="http://mtsu.edu/BlueID" target="_blank"><span class="fas fa-id-card" aria-hidden="true">&nbsp;</span>MTSU ID Card</a></p><p><a href="http://mtsu.edu/help" target="_blank"><span class="fas fa-question-circle" aria-hidden="true">&nbsp;</span>ITD Help Desk</a></p><p><a href="http://www.mtsu.edu/calendar/" target="_blank"><span class="fas fa-calendar-alt" aria-hidden="true">&nbsp;</span>Calendar</a></p><p><a href="https://mtsu.edu/contact.php" target="_blank"><span class="fas fa-address-book" aria-hidden="true">&nbsp;</span>Campus Directory</a></p><div class="clear"><!--x--></div></div><div class="clear"><!--x--></div></div><div class="portlet mtsu-portlet portlet-container portlet-original" data-left="true"><h2 class="portlet-title">Announcements</h2><div class="mtsu-portlet-content"><div class="announcement"><h3><a href="/custom/announcements/421">Arts &amp; Sciences Week: The Winning Combination</a></h3>
-<p><strong>Arts &amp; Sciences Week: The Winning Combination</strong> Gain in-demand job skills by studying both the liberal arts and the basic and applied sciences. Investigate how to gain an advanta...</p>
-<a href="/custom/announcements/421">Read More »</a></div><hr><div class="announcement"><h3><a href="/custom/announcements/445">Two Events from Honors College and PERI</a></h3>
-<h3>The University Honors College and the Political Economy Research Institute are excited to announce the following events for students and faculty: &nbsp;</h3>
-<p><strong>The Continuing Relevance o...</strong></p>
-<a href="/custom/announcements/445">Read More »</a></div><hr><div class="announcement"><h3><a href="/custom/announcements/55">Spring 2020 COE Residency I &amp; II Application Deadline</a></h3>
-<p>The deadline to apply for Residency I or II for the Fall of 2019 is<strong> September 30</strong>,<strong>&nbsp;2019.</strong> &nbsp; If you have any questions, drop by COE 211.</p>
-<p><strong>T</strong></p>
-<a href="/custom/announcements/55">Read More »</a></div><hr><p><a href="/custom/announcements/all">View All Announcements »</a></p></div></div><div class="portlet mtsu-portlet portlet-container portlet-original"><h2 class="portlet-title">Personal Information</h2><div class="mtsu-portlet-content"><ul>
-<li><a href="ssb/bwgkogad.P_SelectAtypUpdate">Addresses and Phones</a></li>
-<li><a href="ssb/bwgkogad.P_SelectEmalUpdate">Email Addresses</a></li>
-<li><a href="ssb/bwgkoemr.P_SelectEmrgContacts">Emergency Contacts</a></li>
-<li><a href="ssb/bwgkoprf.P_ShowDiroItems">Directory Profile</a></li>
-<li><a href="ssb/bzskpobc.p_display_box">MTSU Post Office Box and Combination</a></li>
-<li><a href="ssb/bzskpofw.p_mail_frwd_addr">MTSU Post Office Box Forwarding Address</a></li>
-<li><a href="ssb/bzgkmymb.p_my_mobile">My Mobile Number</a></li>
-<li><a href="http://www.mtsu.edu/one-stop/docs/REGnamechange.pdf" target="_blank" rel="noopener">Name Change Information (Student)</a></li>
-<li><a href="ssb/bwgkoinf.P_DispUpdSSN">Name or Social Security Number Change Information (Employee)</a></li>
-</ul></div></div><div class="portlet mtsu-portlet portlet-container portlet-original"><h2 class="portlet-title">Course Search Tools</h2><div class="mtsu-portlet-content"><ul>
-<li><a href="ssb/bwskfcls.p_sel_crse_search">Look up Classes</a></li>
-<li><a href="ssb/bzckcorq.p_disp_crse_coreqs">Display Corequisites</a></li>
-<li><a href="ssb/bwckctlg.p_disp_dyn_ctlg">Course Catalog</a></li>
-<li><a href="ssb/bwckschd.p_disp_dyn_sched">Class Schedule Search (Basic)</a></li>
-</ul></div></div><div class="portlet mtsu-portlet portlet-container portlet-original"><h2 class="portlet-title">Admissions Application</h2><div class="mtsu-portlet-content"><p><a href="ssb/bzskappl.p_run_application_pckg">Apply Now&nbsp;or&nbsp;Check&nbsp;Admission&nbsp;Status</a></p></div></div><div class="portlet mtsu-portlet portlet-container portlet-original"><h2 class="portlet-title">CUSTOMS Orientation</h2><div class="mtsu-portlet-content"><p><a href="ssb/bzskcust.p_customs_register">Signup Now or Review Signup Details</a></p></div></div>
-<div class="portlet-column" id="portlet-column-1"><!--x-->
-	[CONFIRM]
-	<div class="portlet mtsu-portlet portlet-container" data-left="true"><h2 class="portlet-title">Announcements</h2><div class="mtsu-portlet-content"><div class="announcement"><h3><a href="/custom/announcements/421">Arts &amp; Sciences Week: The Winning Combination</a></h3>
-<p><strong>Arts &amp; Sciences Week: The Winning Combination</strong> Gain in-demand job skills by studying both the liberal arts and the basic and applied sciences. Investigate how to gain an advanta...</p>
-<a href="/custom/announcements/421">Read More »</a></div><hr><div class="announcement"><h3><a href="/custom/announcements/445">Two Events from Honors College and PERI</a></h3>
-<h3>The University Honors College and the Political Economy Research Institute are excited to announce the following events for students and faculty: &nbsp;</h3>
-<p><strong>The Continuing Relevance o...</strong></p>
-<a href="/custom/announcements/445">Read More »</a></div><hr><div class="announcement"><h3><a href="/custom/announcements/55">Spring 2020 COE Residency I &amp; II Application Deadline</a></h3>
-<p>The deadline to apply for Residency I or II for the Fall of 2019 is<strong> September 30</strong>,<strong>&nbsp;2019.</strong> &nbsp; If you have any questions, drop by COE 211.</p>
-<p><strong>T</strong></p>
-<a href="/custom/announcements/55">Read More »</a></div><hr><p><a href="/custom/announcements/all">View All Announcements »</a></p></div></div><div class="portlet mtsu-portlet portlet-container"><h2 class="portlet-title">Admissions Application</h2><div class="mtsu-portlet-content"><p><a href="ssb/bzskappl.p_run_application_pckg">Apply Now&nbsp;or&nbsp;Check&nbsp;Admission&nbsp;Status</a></p></div></div></div>
-									<div class="portlet-column" id="portlet-column-2"><!--x--><div class="portlet mtsu-portlet portlet-container"><h2 class="portlet-title">Personal Information</h2><div class="mtsu-portlet-content"><ul>
-<li><a href="ssb/bwgkogad.P_SelectAtypUpdate">Addresses and Phones</a></li>
-<li><a href="ssb/bwgkogad.P_SelectEmalUpdate">Email Addresses</a></li>
-<li><a href="ssb/bwgkoemr.P_SelectEmrgContacts">Emergency Contacts</a></li>
-<li><a href="ssb/bwgkoprf.P_ShowDiroItems">Directory Profile</a></li>
-<li><a href="ssb/bzskpobc.p_display_box">MTSU Post Office Box and Combination</a></li>
-<li><a href="ssb/bzskpofw.p_mail_frwd_addr">MTSU Post Office Box Forwarding Address</a></li>
-<li><a href="ssb/bzgkmymb.p_my_mobile">My Mobile Number</a></li>
-<li><a href="http://www.mtsu.edu/one-stop/docs/REGnamechange.pdf" target="_blank" rel="noopener">Name Change Information (Student)</a></li>
-<li><a href="ssb/bwgkoinf.P_DispUpdSSN">Name or Social Security Number Change Information (Employee)</a></li>
-</ul></div></div><div class="portlet mtsu-portlet portlet-container"><h2 class="portlet-title">Course Search Tools</h2><div class="mtsu-portlet-content"><ul>
-<li><a href="ssb/bwskfcls.p_sel_crse_search">Look up Classes</a></li>
-<li><a href="ssb/bzckcorq.p_disp_crse_coreqs">Display Corequisites</a></li>
-<li><a href="ssb/bwckctlg.p_disp_dyn_ctlg">Course Catalog</a></li>
-<li><a href="ssb/bwckschd.p_disp_dyn_sched">Class Schedule Search (Basic)</a></li>
-</ul></div></div><div class="portlet mtsu-portlet portlet-container"><h2 class="portlet-title">CUSTOMS Orientation</h2><div class="mtsu-portlet-content"><p><a href="ssb/bzskcust.p_customs_register">Signup Now or Review Signup Details</a></p></div></div></div>
-									</div>
-</div>
-	<script type="text/javascript">
-	var clicky_site_ids = clicky_site_ids || [];
-	clicky_site_ids.push(101072102);
-	(function() {
-	var s = document.createElement('script');
-	s.type = 'text/javascript';
-	s.async = true;
-	s.src = '//static.getclicky.com/js';
-	( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
-	})();
-	</script>
-	<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101072102ns.gif" /></p></noscript>
-	<script src="/js/alert.js"></script>
-
-
-</body>
+         	$.getJSON('https://mtsu.edu/pipeline/manage/request/outage/getOutages/0/1/2', function(data) {
+         			if (data.length){
+         					var outageDiv;
+         					for(var i=0;i<data.length;i++) {
+         							if (i<2) {
+         									$('#pipeline-outage').append($('<div>').addClass('outage-info').html('<h3>'+data[i].title.toUpperCase()+'</h3><p>'+data[i].format+'</p><p>'+data[i].content+' (For more information, please visit our <a href="https://mtsu.edu/pipeline/downtime.php" target="_blank">Planned System Outages</a> page.)</p>').prepend($('<div>').addClass('hide-outage').addClass('fa').addClass('fa-times-circle')));
+         							}
+         					}
+         			}
+         	});
+      </script>
+      <script type="text/javascript" async="" src="//static.getclicky.com/js"></script>
+   </head>
+   <body class="">
+      <!--START HEADER-->
+      <a class="sr-only" href="#main-content">Skip to Main Content</a>
+      <div id="timeout-overlay" style="display: none;">
+         <!--x-->
+      </div>
+      <div id="timeout-content" style="display: none;">
+         <h2>Your session will expire in <span id="timeout-remaining"></span></h2>
+         <h3><a id="extend-session">EXTEND SESSION</a> or <a href="/logout">LOGOUT</a>?</h3>
+      </div>
+      <div id="overlay">
+         <!--x-->
+      </div>
+      <div id="mtsu-quicklinks">
+         <div id="alert-rave">
+            <!--x-->
+         </div>
+         <div id="mtsu-logo" class=""><img src="/images/mt-logo-sm.png" alt="MTSU Logo"></div>
+         <div class="pull-right">
+            [IDDROP]
+            <div id="desktop-menu">
+               <ul class="quicklinks-nav">
+                  <li><a href="http://www.mtsu.edu/one-stop" title="MT One Stop" target="_blank"><img alt="MT One Stop" src="/images/mt-one-stop.png"></a></li>
+                  <li><a href="http://elearn.mtsu.edu" title="D2L" target="_blank" style="font-size:18px;font-weight:bold;">D2L</a></li>
+                  <li><a href="http://mtsu.edu/email/" title="Email" target="_blank" style="font-size:16px;"><i class="fas fa-envelope"></i><span class="sr-only">Email</span></a></li>
+                  <li class="account-info">[STU_NAME]<span id="mnum-show" class="hidden">(<a>SHOW M#</a>)</span><span class="mobile-hide mnum-display account-info-block">([ID])<a id="mnum-hide">HIDE</a></span></li>
+                  <li class="account-info mobile-hide">
+                     <a id="logout">
+                        <i class="fas fa-sign-out" aria-hidden="true">
+                           <!--x-->
+                        </i>
+                        Log Out
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="account-info mobile-show">
+               <a href="/logout" class="logout-link">
+                  <i class="fas fa-sign-out" aria-hidden="true">
+                     <!--x-->
+                  </i>
+                  Log Out
+               </a>
+            </div>
+            <a id="mobile-menu" title="menu">
+               <i class="fas fa-bars">
+                  <!--x-->
+               </i>
+               <span class="sr-only">Toggle Menu</span>
+            </a>
+            <div class="clear">
+               <!--x-->
+            </div>
+         </div>
+         <div class="clear">
+            <!--x-->
+         </div>
+      </div>
+      <div id="mtsu-branding-bar">
+         <div id="mtsu-branding-logo"><img alt="MTSU Logo" src="/images/mtsu-logo.png"></div>
+         PipelineMT
+      </div>
+      <!--END HEADER-->
+      <div id="content-container">
+         <!--START SIDE BAR-->
+         <nav class="navbar-default" role="navigation" id="side-menu">
+            <ul class="mobile-nav-option">
+               <li><a href="http://www.mtsu.edu/one-stop" target="_blank" title="MT One Stop"><span class="nav-label menu-name"><img alt="MTOneStop" src="/images/mt-one-stop-white.png"></span></a></li>
+               <li><a href="http://elearn.mtsu.edu" target="_blank" title="D2L"><span class="nav-label menu-name">D2L</span></a></li>
+               <li>
+                  <a href="http://mtsu.edu/email/" target="_blank" title="Email">
+                     <i class="fas fa-envelope"></i>
+                     <span class="nav-label menu-name">
+                        <!--x-->
+                     </span>
+                     <span class="sr-only">Email</span>
+                  </a>
+               </li>
+            </ul>
+            <ul class="nav side-nav">
+               <li class="active " id="" role="presentation">
+                  <a href="/home" role="menuitem">
+                  <i class="fas fa-home" aria-hidden="true"></i>
+                  <span class="nav-label menu-name">Home</span>
+                  </a>
+               </li>
+               <li class="" id="" role="presentation">
+                  <a href="/registration" role="menuitem">
+                  <i class="fas fa-graduation-cap steel-icons" aria-hidden="true"></i>
+                  <span class="nav-label menu-name">Registration &amp; Student Records</span>
+                  </a>
+               </li>
+               <li class="" id="" role="presentation">
+                  <a href="/academic-resources" role="menuitem">
+                  <i class="fas fa-pencil-alt teal-icons" aria-hidden="true"></i>
+                  <span class="nav-label menu-name">Academic Resources</span>
+                  </a>
+               </li>
+               <li class="" id="" role="presentation">
+                  <a href="/financial-aid" role="menuitem">
+                  <i class="fas fa-money-bill-alt green-icons" aria-hidden="true"></i>
+                  <span class="nav-label menu-name">Financial Aid</span>
+                  </a>
+               </li>
+               <li class="" id="" role="presentation">
+                  <a href="/billing-payment" role="menuitem">
+                  <i class="fas fa-dollar-sign green-icons" aria-hidden="true"></i>
+                  <span class="nav-label menu-name">Billing &amp; Payment</span>
+                  </a>
+               </li>
+               <li class="" id="" role="presentation">
+                  <a href="/resources" role="menuitem">
+                  <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                  <span class="nav-label menu-name">Resources</span>
+                  </a>
+               </li>
+            </ul>
+         </nav>
+         <!--END SIDE BAR-->
+         <div id="page-wrapper">
+            <a name="main-content"></a>
+            <div id="pipeline-outage"></div>
+            <div class="mobile-show mobile-account-info">Daniel Chang (M01381755)</div>
+            <div class="portlet-icons mtsu-portlet portlet-container">
+               <div class="mtsu-portlet-content">
+                  <p><a href="http://mtsu.edu/BlueID" target="_blank"><span class="fas fa-id-card" aria-hidden="true">&nbsp;</span>MTSU ID Card</a></p>
+                  <p><a href="http://mtsu.edu/help" target="_blank"><span class="fas fa-question-circle" aria-hidden="true">&nbsp;</span>ITD Help Desk</a></p>
+                  <p><a href="http://www.mtsu.edu/calendar/" target="_blank"><span class="fas fa-calendar-alt" aria-hidden="true">&nbsp;</span>Calendar</a></p>
+                  <p><a href="https://mtsu.edu/contact.php" target="_blank"><span class="fas fa-address-book" aria-hidden="true">&nbsp;</span>Campus Directory</a></p>
+                  <div class="clear">
+                     <!--x-->
+                  </div>
+               </div>
+               <div class="clear">
+                  <!--x-->
+               </div>
+            </div>
+            <div class="portlet mtsu-portlet portlet-container portlet-original" data-left="true">
+               <h2 class="portlet-title">Announcements</h2>
+               <div class="mtsu-portlet-content">
+                  <div class="announcement">
+                     <h3><a href="/custom/announcements/421">Arts &amp; Sciences Week: The Winning Combination</a></h3>
+                     <p><strong>Arts &amp; Sciences Week: The Winning Combination</strong> Gain in-demand job skills by studying both the liberal arts and the basic and applied sciences. Investigate how to gain an advanta...</p>
+                     <a href="/custom/announcements/421">Read More »</a>
+                  </div>
+                  <hr>
+                  <div class="announcement">
+                     <h3><a href="/custom/announcements/445">Two Events from Honors College and PERI</a></h3>
+                     <h3>The University Honors College and the Political Economy Research Institute are excited to announce the following events for students and faculty: &nbsp;</h3>
+                     <p><strong>The Continuing Relevance o...</strong></p>
+                     <a href="/custom/announcements/445">Read More »</a>
+                  </div>
+                  <hr>
+                  <div class="announcement">
+                     <h3><a href="/custom/announcements/55">Spring 2020 COE Residency I &amp; II Application Deadline</a></h3>
+                     <p>The deadline to apply for Residency I or II for the Fall of 2019 is<strong> September 30</strong>,<strong>&nbsp;2019.</strong> &nbsp; If you have any questions, drop by COE 211.</p>
+                     <a href="/custom/announcements/55">Read More »</a>
+                  </div>
+                  <hr>
+                  <p><a href="/custom/announcements/all">View All Announcements »</a></p>
+               </div>
+            </div>
+            <div class="portlet mtsu-portlet portlet-container portlet-original">
+               <h2 class="portlet-title">Personal Information</h2>
+               <div class="mtsu-portlet-content">
+                  <ul>
+                     <li><a href="ssb/bwgkogad.P_SelectAtypUpdate">Addresses and Phones</a></li>
+                     <li><a href="ssb/bwgkogad.P_SelectEmalUpdate">Email Addresses</a></li>
+                     <li><a href="ssb/bwgkoemr.P_SelectEmrgContacts">Emergency Contacts</a></li>
+                     <li><a href="ssb/bwgkoprf.P_ShowDiroItems">Directory Profile</a></li>
+                     <li><a href="ssb/bzskpobc.p_display_box">MTSU Post Office Box and Combination</a></li>
+                     <li><a href="ssb/bzskpofw.p_mail_frwd_addr">MTSU Post Office Box Forwarding Address</a></li>
+                     <li><a href="ssb/bzgkmymb.p_my_mobile">My Mobile Number</a></li>
+                     <li><a href="http://www.mtsu.edu/one-stop/docs/REGnamechange.pdf" target="_blank" rel="noopener">Name Change Information (Student)</a></li>
+                     <li><a href="ssb/bwgkoinf.P_DispUpdSSN">Name or Social Security Number Change Information (Employee)</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="portlet mtsu-portlet portlet-container portlet-original">
+               <h2 class="portlet-title">Course Search Tools</h2>
+               <div class="mtsu-portlet-content">
+                  <ul>
+                     <li><a href="ssb/bwskfcls.p_sel_crse_search">Look up Classes</a></li>
+                     <li><a href="ssb/bzckcorq.p_disp_crse_coreqs">Display Corequisites</a></li>
+                     <li><a href="ssb/bwckctlg.p_disp_dyn_ctlg">Course Catalog</a></li>
+                     <li><a href="ssb/bwckschd.p_disp_dyn_sched">Class Schedule Search (Basic)</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="portlet mtsu-portlet portlet-container portlet-original">
+               <h2 class="portlet-title">Admissions Application</h2>
+               <div class="mtsu-portlet-content">
+                  <p><a href="ssb/bzskappl.p_run_application_pckg">Apply Now&nbsp;or&nbsp;Check&nbsp;Admission&nbsp;Status</a></p>
+               </div>
+            </div>
+            <div class="portlet mtsu-portlet portlet-container portlet-original">
+               <h2 class="portlet-title">CUSTOMS Orientation</h2>
+               <div class="mtsu-portlet-content">
+                  <p><a href="ssb/bzskcust.p_customs_register">Signup Now or Review Signup Details</a></p>
+               </div>
+            </div>
+            <div class="portlet-column" id="portlet-column-1">
+               <!--x-->
+               [CONFIRM]
+               <div class="portlet mtsu-portlet portlet-container" data-left="true">
+                  <h2 class="portlet-title">Announcements</h2>
+                  <div class="mtsu-portlet-content">
+                     <div class="announcement">
+                        <h3><a href="/custom/announcements/421">Arts &amp; Sciences Week: The Winning Combination</a></h3>
+                        <p><strong>Arts &amp; Sciences Week: The Winning Combination</strong> Gain in-demand job skills by studying both the liberal arts and the basic and applied sciences. Investigate how to gain an advanta...</p>
+                        <a href="/custom/announcements/421">Read More »</a>
+                     </div>
+                     <hr>
+                     <div class="announcement">
+                        <h3><a href="/custom/announcements/445">Two Events from Honors College and PERI</a></h3>
+                        <h3>The University Honors College and the Political Economy Research Institute are excited to announce the following events for students and faculty: &nbsp;</h3>
+                        <p><strong>The Continuing Relevance o...</strong></p>
+                        <a href="/custom/announcements/445">Read More »</a>
+                     </div>
+                     <hr>
+                     <div class="announcement">
+                        <h3><a href="/custom/announcements/55">Spring 2020 COE Residency I &amp; II Application Deadline</a></h3>
+                        <p>The deadline to apply for Residency I or II for the Fall of 2019 is<strong> September 30</strong>,<strong>&nbsp;2019.</strong> &nbsp; If you have any questions, drop by COE 211.</p>
+                        <p><strong>T</strong></p>
+                        <a href="/custom/announcements/55">Read More »</a>
+                     </div>
+                     <hr>
+                     <p><a href="/custom/announcements/all">View All Announcements »</a></p>
+                  </div>
+               </div>
+               <div class="portlet mtsu-portlet portlet-container">
+                  <h2 class="portlet-title">Admissions Application</h2>
+                  <div class="mtsu-portlet-content">
+                     <p><a href="ssb/bzskappl.p_run_application_pckg">Apply Now&nbsp;or&nbsp;Check&nbsp;Admission&nbsp;Status</a></p>
+                  </div>
+               </div>
+            </div>
+            <div class="portlet-column" id="portlet-column-2">
+               <!--x-->
+			   <div class="portlet mtsu-portlet portlet-container">
+                  <h2 class="portlet-title">Personal Information</h2>
+                  <div class="mtsu-portlet-content">
+                     <ul>
+                        <li><a href="ssb/bwgkogad.P_SelectAtypUpdate">Addresses and Phones</a></li>
+                        <li><a href="ssb/bwgkogad.P_SelectEmalUpdate">Email Addresses</a></li>
+                        <li><a href="ssb/bwgkoemr.P_SelectEmrgContacts">Emergency Contacts</a></li>
+                        <li><a href="ssb/bwgkoprf.P_ShowDiroItems">Directory Profile</a></li>
+                        <li><a href="ssb/bzskpobc.p_display_box">MTSU Post Office Box and Combination</a></li>
+                        <li><a href="ssb/bzskpofw.p_mail_frwd_addr">MTSU Post Office Box Forwarding Address</a></li>
+                        <li><a href="ssb/bzgkmymb.p_my_mobile">My Mobile Number</a></li>
+                        <li><a href="http://www.mtsu.edu/one-stop/docs/REGnamechange.pdf" target="_blank" rel="noopener">Name Change Information (Student)</a></li>
+                        <li><a href="ssb/bwgkoinf.P_DispUpdSSN">Name or Social Security Number Change Information (Employee)</a></li>
+                     </ul>
+                  </div>
+               </div>
+			   [PAYMENT]
+               <div class="portlet mtsu-portlet portlet-container">
+                  <h2 class="portlet-title">Course Search Tools</h2>
+                  <div class="mtsu-portlet-content">
+                     <ul>
+                        <li><a href="ssb/bwskfcls.p_sel_crse_search">Look up Classes</a></li>
+                        <li><a href="ssb/bzckcorq.p_disp_crse_coreqs">Display Corequisites</a></li>
+                        <li><a href="ssb/bwckctlg.p_disp_dyn_ctlg">Course Catalog</a></li>
+                        <li><a href="ssb/bwckschd.p_disp_dyn_sched">Class Schedule Search (Basic)</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="portlet mtsu-portlet portlet-container">
+                  <h2 class="portlet-title">CUSTOMS Orientation</h2>
+                  <div class="mtsu-portlet-content">
+                     <p><a href="ssb/bzskcust.p_customs_register">Signup Now or Review Signup Details</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript">
+         var clicky_site_ids = clicky_site_ids || [];
+         clicky_site_ids.push(101072102);
+         (function() {
+         var s = document.createElement('script');
+         s.type = 'text/javascript';
+         s.async = true;
+         s.src = '//static.getclicky.com/js';
+         ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+         })();
+      </script>
+      <noscript>
+         <p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101072102ns.gif" /></p>
+      </noscript>
+      <script src="/js/alert.js"></script>
+   </body>
 </html>
