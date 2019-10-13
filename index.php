@@ -14,8 +14,8 @@ $res = DB::pdo()->query("SELECT * FROM student WHERE id=".$sess_id." LIMIT 1");
 $params['CONFIRM'] = getConfirmBtn($sess_id);
 if ($res->rowCount()) {
 	$r = $res->fetch();
-	$params['STU_NAME'] = $r['fname'].' '.$r['lname'];
-	$params['ID'] = 'M'.sprintf("%06s", $r['id']);
+	$params['STU_NAME'] = $r['fname'].' '.$r['mname'].' '.$r['lname'];
+	$params['ID'] = 'M'.sprintf("%06s", $r['ID']);
 } else {
   echo '<p>Invalid sess_id</p>';
 }
@@ -26,8 +26,8 @@ if ($rowCnt){
 	$dropdown = '<select id="idpicker" onchange="changeUser(\'\', this);">';
 	for($i = 0; $i < $rowCnt; $i++){
 		$r = $res->fetch();
-		$sel = $r['id'] == intval($sess_id) ? 'selected' : '';
-		$dropdown.='<option value='.$r['id'].' '.$sel.'>M'.sprintf("%06s", $r['id']).'</option>';
+		$sel = $r['ID'] == intval($sess_id) ? 'selected' : '';
+		$dropdown.='<option value='.$r['ID'].' '.$sel.'>M'.sprintf("%06s", $r['ID']).'</option>';
 	}
 	$dropdown.='</select>';
 	$params['IDDROP'] = $dropdown;
