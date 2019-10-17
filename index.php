@@ -24,12 +24,13 @@ if ($res->rowCount()) {
 	$params['STU_NAME'] = $r['fname'].' '.$r['mname'].' '.$r['lname'];
 	$params['ID'] = 'M'.sprintf("%06s", $r['ID']);
 } else {
-  echo '<p>Invalid sess_id</p>';
+	echo '<p>Invalid sess_id</p>';
 }
 
 // Drop down ID list for switching through different accounts
 $res = DB::pdo()->query("SELECT * FROM student WHERE id");
 $rowCnt = $res->rowCount();
+$params['IDDROP'] = '';
 if ($rowCnt){
 	$dropdown = '<select id="idpicker" onchange="changeUser(\'\', this);">';
 	for($i = 0; $i < $rowCnt; $i++){
