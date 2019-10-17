@@ -1,16 +1,21 @@
 <?php
-$params = array();
-if(!array_key_exists('id',$_POST)){
-	$sess_id = 1;
-} else {
-	$sess_id = $_POST['id'];
-}
-
 include('confirm.php');
 include('payment.php');
 include("class.DB.php");
 
-$res = DB::pdo()->query("SELECT * FROM student WHERE id=".$sess_id." LIMIT 1");
+$params = array();
+if(!array_key_exists('id',$_POST)){
+	$res = DB::pdo()->query("SELECT * FROM student WHERE 1 LIMIT 1");
+	if ($res->rowCount() != 1){
+		$params['STU_NAME'] = $params['ID'] = 'Empty Database';
+	} else {
+		$r = $res->fetch();
+		$sess_id = $r['ID'];
+	}
+} else {
+	$sess_id = $_POST['id'];
+	$res = DB::pdo()->query("SELECT * FROM student WHERE id=".$sess_id." LIMIT 1");
+}
 
 //Get the confirm button template
 $params['CONFIRM'] = getConfirmBtn($sess_id);
