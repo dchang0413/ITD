@@ -1,4 +1,8 @@
 <?php
+DEFINE ('DBUSER','SEPpipeline');
+DEFINE ('DBPASS','b!4cKg01dT3x@s$+34');
+DEFINE ('DBNAME','SEPpipeline');
+
 include('confirm.php');
 include('payment.php');
 include("class.DB.php");
