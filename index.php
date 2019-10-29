@@ -36,10 +36,14 @@ if(!array_key_exists('id',$_POST)){
 $params['CONFIRM'] = getConfirmBtn($sess_id);
 
 //Get the payment table template
-$params['PAYMENT'] = getPaymentTable($sess_id);
+$payment = getPaymentTable($sess_id);
+$params['PAYMENT1'] = $payment[0];
+$params['PAYMENT2'] = $payment[1];
 
 //Get FinAid table template
-$params['FINAID'] = getFinAidTable($sess_id);
+$finaid = getFinAidTable($sess_id);
+$params['FINAID1'] = $finaid[0];
+$params['FINAID2'] = $finaid[1];
 
 // Drop down ID list for switching through different accounts
 $res = DB::pdo()->query("SELECT * FROM student WHERE id");
