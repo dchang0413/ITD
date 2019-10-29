@@ -5,7 +5,7 @@ function getFinAidTable($id){
     $rowcount = $res->rowCount();
     if ($rowcount) {
         //start of div
-        $content.='<div class="portlet mtsu-portlet portlet-container">'.
+        $content.='<div class="portlet mtsu-portlet portlet-container portlet-original">'.
         '<h2 class="portlet-title">Financial Aid Check List</h2>'.
         '<div class="mtsu-portlet-content">';
 
