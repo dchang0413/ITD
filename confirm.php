@@ -5,7 +5,7 @@ function getConfirmBtn($id){
     $res = DB::pdo()->query("SELECT confirmed FROM student WHERE id=".$id." LIMIT 1");
     if ($res->rowCount()) {
         $r = $res->fetch();
-        $confirmed = $r['confirmed'] == 1 ? true : false;
+        $confirmed = $r['confirmed'] != null ? true : false;
     } else $confirmed = false;
 
     if (!$confirmed){

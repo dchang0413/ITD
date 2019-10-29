@@ -1,4 +1,6 @@
 <?php
+//Config for webprojects
+//Change it to your own database logins
 DEFINE ('DBUSER','SEPpipeline');
 DEFINE ('DBPASS','b!4cKg01dT3x@s$+34');
 DEFINE ('DBNAME','SEPpipeline');
@@ -6,6 +8,7 @@ DEFINE ('DBNAME','SEPpipeline');
 include('confirm.php');
 include('payment.php');
 include("class.DB.php");
+include("financialaid.php");
 
 $params = array();
 if(!array_key_exists('id',$_POST)){
@@ -15,10 +18,18 @@ if(!array_key_exists('id',$_POST)){
 	} else {
 		$r = $res->fetch();
 		$sess_id = $r['ID'];
+
+		// Load user according to session ID
+		$params['STU_NAME'] = $r['fname'].' '.$r['mname'].' '.$r['lname'];
+		$params['ID'] = 'M'.sprintf("%06s", $r['ID']);
 	}
 } else {
 	$sess_id = $_POST['id'];
 	$res = DB::pdo()->query("SELECT * FROM student WHERE id=".$sess_id." LIMIT 1");
+	// Load user according to session ID
+	$r = $res->fetch();
+	$params['STU_NAME'] = $r['fname'].' '.$r['mname'].' '.$r['lname'];
+	$params['ID'] = 'M'.sprintf("%06s", $_POST['id']);
 }
 
 //Get the confirm button template
@@ -27,14 +38,8 @@ $params['CONFIRM'] = getConfirmBtn($sess_id);
 //Get the payment table template
 $params['PAYMENT'] = getPaymentTable($sess_id);
 
-// Load user according to session ID
-if ($res->rowCount()) {
-	$r = $res->fetch();
-	$params['STU_NAME'] = $r['fname'].' '.$r['mname'].' '.$r['lname'];
-	$params['ID'] = 'M'.sprintf("%06s", $r['ID']);
-} else {
-	echo '<p>Invalid sess_id</p>';
-}
+//Get FinAid table template
+$params['FINAID'] = getFinAidTable($sess_id);
 
 // Drop down ID list for switching through different accounts
 $res = DB::pdo()->query("SELECT * FROM student WHERE id");
