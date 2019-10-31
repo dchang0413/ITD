@@ -975,7 +975,7 @@ a.btn-navy:hover,a.btn-navy:focus{color:#20276B;border:solid 2px #20276B;backgro
   border-radius: 30px;
 	background-color: #1c2b59;
 	color: white;
-	font-size: 40px;
+	font-size: 3vw;
 	padding-top: 3%;
 	text-align: center;
 	cursor: pointer;
@@ -986,6 +986,6 @@ a.btn-navy:hover,a.btn-navy:focus{color:#20276B;border:solid 2px #20276B;backgro
   border-radius: 30px;
 	background-color: #005ea4;
 	color: white;
-	font-size: 40px;
+	font-size: 3vw;
 	cursor: pointer;
 }
