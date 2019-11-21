@@ -5,7 +5,7 @@ class DB{
 		if(NULL===self::$pdo) {
 			try{
 				//self::$pdo = new PDO('odbc:'.DBNAME,DBUSER,DBPASS);
-				self::$pdo = new PDO('mysql:host=localhost;dbname=pipeline','pipeline','pipeline');
+				self::$pdo = new PDO('mysql:host=localhost;dbname=SEPpipeline','pipeline','pipeline');
 				self::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 				self::$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			}

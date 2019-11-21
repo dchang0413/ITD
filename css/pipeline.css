@@ -254,7 +254,7 @@ a.btn-navy:hover,a.btn-navy:focus{color:#20276B;border:solid 2px #20276B;backgro
 	#page-wrapper {padding-left:65px;}
 	#side-menu ul li a span {display:none;}
 	#side-menu ul li a i {margin:0 0 0 10px;}
-
+	
 	#mtsu-branding-bar {font-size:20px;/*padding:15px;*/}
 	#mtsu-branding-logo {margin-right:15px;}
 	#mtsu-branding-logo img {height:40px;}
@@ -264,7 +264,6 @@ a.btn-navy:hover,a.btn-navy:focus{color:#20276B;border:solid 2px #20276B;backgro
   .portlet-icons {width:100%;margin-right:0;}
   .portlet-original {display:block;width:100%;}
   .portlet-column {display:none;}
-
 	.portlet-icons {font-size:13px;}
 	.portlet-icons .fa,.portlet-icons .fas,.portlet-icons .far,.portlet-icons .fab,.portlet-icons .fal {font-size:60px;}
 	.portlet-icons .fa:before,.portlet-icons .fas:before,.portlet-icons .far:before,.portlet-icons .fab:before,.portlet-icons .fal:before {margin-bottom:-60px;}
@@ -278,7 +277,7 @@ a.btn-navy:hover,a.btn-navy:focus{color:#20276B;border:solid 2px #20276B;backgro
 	#alert-rave {top:-7px;margin:0;}
 	#mobile-menu {display:block;}
 	#desktop-menu {display:none;}
-    .account-info {padding-top:6px;}
+        .account-info {padding-top:6px;}
 	#side-menu {display:none;width:100%;padding-top:0;background-color:rgba(255,255,255,1);position:fixed;overflow-y:scroll;height:100%;}
 	#side-menu.show-mobile-menu {display:block;}
 	#side-menu.fixed-menu {padding-top:45px;}
@@ -972,20 +971,23 @@ a.btn-navy:hover,a.btn-navy:focus{color:#20276B;border:solid 2px #20276B;backgro
 
 .confirmation {
 	height: 90px;
-  border-radius: 30px;
+  	border-radius: 5px;
 	background-color: #1c2b59;
 	color: white;
-	font-size: 3vw;
-	padding-top: 3%;
+	font-size: 32px;
+	padding-top: 24px;
 	text-align: center;
 	cursor: pointer;
+	margin-bottom: 20px;
+}
+.confirmation:hover{
+  background-color: #005ea4;
+}
+.ScheduleHeadSel{
+	background-color: #f0f0f0;
 }
 
-.confirmation:hover{
-	height: 90px;
-  border-radius: 30px;
-	background-color: #005ea4;
-	color: white;
-	font-size: 3vw;
-	cursor: pointer;
+.ScheduleCell{
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
