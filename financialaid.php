@@ -18,6 +18,7 @@ function getFinAidTable($id){
 
         //if the s=university has not recieved the FAFSA
         if($rowcountFAFSA) {
+<<<<<<< HEAD
           $content[0].=' MTSU has not recieved your FAFSA, to be eligible for scholarships and loans
                         through the university please ensure that it has been submitted.<br />
                         <li><a href="https://studentaid.ed.gov/sa/fafsa" target="_blank">Click here to fill out the FAFSA</a></li>';
@@ -26,6 +27,13 @@ function getFinAidTable($id){
           $content[1].='MTSU has not recieved your FAFSA, to be eligible for scholarships and loans
                         through the university please ensure that it has been submitted.<br />
                         <li><a href="https://studentaid.ed.gov/sa/fafsa" target="_blank">Click here to fill out the FAFSA</a></li>';
+=======
+          $content[0].='MTSU has not recieved your FAFSA, to be eligible for scholarships and loans
+                        through the university please ensure that it has been submitted.';
+          if(0 < $rowcountFAFSA - 1) $content[0].='<hr>';
+          $content[1].='MTSU has not recieved your FAFSA, to be eligible for scholarships and loans
+                        through the university please ensure that it has been submitted.';
+>>>>>>> d0b693ea06711d9973480b858b6364dbbd9b5a20
           if(0 < $rowcountFAFSA - 1) $content[1].='<hr>';
 
           //If the student has private financial aid not affiliated with the university
