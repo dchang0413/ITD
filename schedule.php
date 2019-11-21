@@ -58,11 +58,11 @@ function getScheduleTable($id, $term = "F2019"){
     foreach($days as $key => $val){
         if($key != '') {
             if ($j == date('w')){
-                $content[0].="<th id=\"SchedHead2{$j}\" class=\"ScheduleHeadSel\" onclick=\"changeSchedTab2('{$j}')\">{$key}</th>";
-                $content[1].="<th id=\"SchedHead{$j}\" class=\"ScheduleHeadSel\" onclick=\"changeSchedTab('{$j}')\">{$key}</th>";
+                $content[0].="<th id=\"SchedHead2{$j}\" style=\"width:16.6%\" class=\"ScheduleHeadSel\" onclick=\"changeSchedTab2('{$j}')\">{$key}</th>";
+                $content[1].="<th id=\"SchedHead{$j}\" style=\"width:16.6%\" class=\"ScheduleHeadSel\" onclick=\"changeSchedTab('{$j}')\">{$key}</th>";
             } else {
-                $content[0].="<th id=\"SchedHead2{$j}\" onclick=\"changeSchedTab2('{$j}')\">{$key}</th>";
-                $content[1].="<th id=\"SchedHead{$j}\" onclick=\"changeSchedTab('{$j}')\">{$key}</th>";
+                $content[0].="<th id=\"SchedHead2{$j}\" style=\"width:16.6%\" onclick=\"changeSchedTab2('{$j}')\">{$key}</th>";
+                $content[1].="<th id=\"SchedHead{$j}\" style=\"width:16.6%\" onclick=\"changeSchedTab('{$j}')\">{$key}</th>";
             }
         }
         $j++;

@@ -12,7 +12,7 @@ include('financialaid.php');
 include('schedule.php');
 
 session_start();
-//if(array_key_exists('confirmation',$_POST)) echo $_POST
+
 if(array_key_exists('confirmation',$_POST)){
 	loadConfirmPg($_POST['confirmation']);
 } else {
